@@ -1,3 +1,4 @@
 *.tmp
 /efi.img
 /filesystem.squashfs
+/hapi.iso

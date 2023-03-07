@@ -14,10 +14,17 @@ efi.img:
 filesystem.squashfs:
 	fakeroot mksquashfs os.tmp filesystem.squashfs
 
+hapi.iso:
+	xorriso -as mkisofs -append_partition 2 0xef efi.img -o hapi.iso iso.tmp
+
+iso.tmp:
+	mkdir iso.tmp
+	cp filesystem.squashfs iso.tmp
+
 os.tmp:
 	mkdir os.tmp
 	cp busybox/busybox os.tmp/busybox
 
 .PHONY: clean
 clean:
-	rm -rf *.tmp efi.img filesystem.squashfs
+	rm -rf *.tmp efi.img filesystem.squashfs hapi.iso
