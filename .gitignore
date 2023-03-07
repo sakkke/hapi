@@ -1,2 +1,3 @@
 *.tmp
 /efi.img
+/filesystem.squashfs

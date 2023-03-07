@@ -11,6 +11,13 @@ efi.img:
 	cp -RT efi efi.tmp
 	umount efi.tmp
 
+filesystem.squashfs:
+	fakeroot mksquashfs os.tmp filesystem.squashfs
+
+os.tmp:
+	mkdir os.tmp
+	cp busybox/busybox os.tmp/busybox
+
 .PHONY: clean
 clean:
-	rm -rf *.tmp efi.img
+	rm -rf *.tmp efi.img filesystem.squashfs
