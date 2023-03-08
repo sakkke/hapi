@@ -25,6 +25,12 @@ os.tmp:
 	mkdir os.tmp
 	cp busybox/busybox os.tmp/busybox
 
+.PHONY: task-hapi.iso
+task-hapi.iso:
+	test -n "$$SUDO_USER"
+	$(MAKE) efi.img
+	runuser -u "$$SUDO_USER" -- $(MAKE) os.tmp filesystem.squashfs iso.tmp hapi.iso
+
 .PHONY: clean
 clean:
 	rm -rf *.tmp efi.img filesystem.squashfs hapi.iso
