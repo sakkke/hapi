@@ -1,7 +1,9 @@
 .PHONY: all
-all:
+all: busybox linux
+
+.PHONY: busybox
+busybox:
 	$(MAKE) -C busybox
-	$(MAKE) -C linux
 
 efi.img:
 	truncate -s 300M efi.img
@@ -20,6 +22,10 @@ hapi.iso:
 iso.tmp:
 	mkdir iso.tmp
 	cp filesystem.squashfs iso.tmp
+
+.PHONY: linux
+linux:
+	$(MAKE) -C linux
 
 os.tmp:
 	mkdir os.tmp
