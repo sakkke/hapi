@@ -34,6 +34,7 @@ os.tmp:
 .PHONY: task-hapi.iso
 task-hapi.iso:
 	test -n "$$SUDO_USER"
+	runuser -u "$$SUDO_USER" -- $(MAKE) busybox linux
 	$(MAKE) efi.img
 	runuser -u "$$SUDO_USER" -- $(MAKE) os.tmp filesystem.squashfs iso.tmp hapi.iso
 
