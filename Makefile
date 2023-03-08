@@ -38,6 +38,10 @@ task-hapi.iso:
 	$(MAKE) efi.img
 	runuser -u "$$SUDO_USER" -- $(MAKE) os.tmp filesystem.squashfs iso.tmp hapi.iso
 
+.PHONY: task-qemu
+task-qemu:
+	qemu-system-x86_64 -bios OVMF.fd -drive file=hapi.iso,format=raw
+
 .PHONY: clean
 clean:
 	rm -rf *.tmp efi.img filesystem.squashfs hapi.iso
